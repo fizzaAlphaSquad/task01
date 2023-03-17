@@ -85,9 +85,8 @@ const Puzzle = () => {
     // }
     return (
       <>
-        <Navbar
-          size={size}
-        />
+        <Navbar />
+  
         <div className="Main-container-puzzle">
           <form className="Main-Box-puzzle">
             <div className="Main-form-content">
