@@ -1,0 +1,50 @@
+
+.App {
+  background-color: #028090;
+  }
+  
+  .Main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+  }
+  .Main-logo{
+    width: 350px;
+    height: 376px;
+    justify-items: center;
+
+  }
+  
+  .Main-Box {
+    width: 420px;
+    box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
+    padding-top: 30px;
+    padding-bottom: 52px;
+    border-radius: 8px;
+    background-color: white;
+  }
+  
+  .Main-form-content {
+    padding-left: 12%;
+    padding-right: 12%;
+  }
+  .nav-class{
+    color: black;
+  
+  }
+  
+  .Main-form-title {
+    text-align: center;
+    margin-bottom: 1em;
+    font-size: 27px;
+    color: black;
+    font-weight: bolder;
+  }
+  
+  label {
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(34, 34, 34);
+  }

@@ -1,0 +1,105 @@
+
+.App {
+    background-color: #028090;
+    }
+    
+    .Main-container-puzzle {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* width: 88vw; */
+        padding-top: 297px;
+        height: 60vh;
+    }
+    
+
+    
+    .Main-logo{
+      width: 350px;
+      height: 376px;
+      justify-items: center;
+  
+    }
+    
+    .Main-Box-puzzle {
+      width: 630px;
+        box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
+        padding-top: 30px;
+        padding-bottom: 100px;
+        border-radius: 8px;
+        background-color: #dee2e6;
+    }
+    
+    .Main-form-content {
+      padding-left: 12%;
+      padding-right: 12%;
+    }
+    .nav-class{
+      color: black;
+    
+    }
+    
+    .Main-form-title {
+      text-align: center;
+      margin-bottom: 1em;
+      font-size: 27px;
+      color: black;
+      font-weight: bolder;
+    }
+    
+    label {
+      font-size: 14px;
+      font-weight: 600;
+      color: rgb(34, 34, 34);
+    }
+    .grid-container {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        background-color: #2196F3;
+        padding: 10px;
+      }
+      .grid-item {
+        background-color: rgba(255,255,255,.15);
+        border: 3px solid #17a2b8;
+    padding: 20px;
+  
+    font-size: 30px;
+    text-align: center;
+      }
+
+      .drag-react>div {
+        width: 120px;
+        height: 120px;
+        background-color: rgb(255, 79, 79);
+        color: #fff;
+        border-radius: 7px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 15px;
+        text-align: center;
+        letter-spacing: 0.6px;
+      }
+.grid-row{
+  margin-right: 20px;
+  margin-bottom: 30px;
+  
+    height: 45px;
+    
+}
+
+.grid-col{
+  margin-right: 98px;
+  font-size: x-large;
+  width: 498px;
+padding-right: 30px;
+padding-left: 30px;
+padding-bottom: 10px;
+font-weight: 700;
+padding-top: 10px;
+  height: 50px;
+  border-radius: 8px;
+  background-color: #17a2b8;
+}
+
+      
