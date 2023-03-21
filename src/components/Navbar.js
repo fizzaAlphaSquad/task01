@@ -19,8 +19,10 @@ const Navbar = ({size}) => {
                 </a>
             </nav> */}
 
-            <span onClick={() => window.scroll(0, 0)} className="header">
-                <div className="logo">
+            <span onClick={() => window.scroll(0, 0)} className="flex justify-between items-center border-b-2 border-gray-100 py-6 md:justify-start md:space-x-10 bg-[#028090]" 
+            // className="header"
+            >
+                <div>
                 <Link to="/">
                     <img className="nav-logo " src={logo} />
                     </Link>

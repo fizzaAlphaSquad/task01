@@ -39,6 +39,10 @@
 
 }
 
+.inputlabel{
+  font-size: 20px;
+  font-weight: 700;
+}
 .Main-form-title {
   text-align: center;
   margin-bottom: 1em;
@@ -94,7 +98,7 @@ label {
 }
 
 
-.main-gridtwo {
+.gridtwo {
   display: grid;
   justify-items: center;
   grid-gap: 15px;
@@ -103,7 +107,7 @@ label {
   grid-template-columns: 250px 250px;
 }
 
-.main-grid-three {
+.grid-three {
   display: grid;
   justify-items: center;
   grid-gap: 15px;
@@ -112,7 +116,7 @@ label {
   grid-template-columns: 250px 250px 250px;
 }
 
-.main-grid-four {
+.grid-four {
   display: grid;
   justify-items: center;
   grid-gap: 15px;
@@ -121,11 +125,12 @@ label {
   grid-template-columns: 250px 250px 250px 250px;
 }
 
-.main-grid-five {
+.grid-five {
   display: grid;
   justify-items: center;
   grid-gap: 15px;
-  margin-left: 100px;
+  margin-left: 45px;
+
   margin-top: 50px;
   grid-template-columns: 250px 250px 250px 250px 250px;
 }

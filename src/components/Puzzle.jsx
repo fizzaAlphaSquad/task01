@@ -64,14 +64,16 @@ const Puzzle = () => {
     <>
       <Navbar />
     
-       <div className="  w-full h-screen pt-10 pb-3 z-50 justify-center items-center">
+    
+       {/* <div className="  w-full h-screen pt-10 pb-3 z-50 justify-center items-center"> */}
         {/* <form className="   bg-zinc-300 w-full h-screen "> */}
+        <div className="   bg-zinc-300 w-full h-screen  pt-10 pb-3 z-50  ">
           <div className="p-3 w-full mt-8 h-7   justify-center items-center ">
-            <h3 className="Main-form-title"> Grid Generator</h3>
+            <h3 className="Main-form-title"> Random Grid Generator</h3>
             <div class="container">
               <form onSubmit={handler} >
                 <div class="form-group  justify-center items-center">
-                  <label for="inputNumber">Enter a number:</label>
+                  <label  className="inputlabel" htmlFor="inputNumber">Enter a number:</label>
                   <input class="form-control"
                    type="number" min={1} value={input} onChange={(e) => {
                     setInput('')
@@ -84,18 +86,18 @@ const Puzzle = () => {
                 </div>
               </form>
 
-              <div
+              {/* <div
                 // style={{ gridTemplateColumns: `repeat(${size}, 1fr)` }}
                 // className={`gridSelected grid rounded-xl  grid-cols-${size} grid-rows-${size} shadow-4xl  w-full  justify-items-center gap-4   mx-auto p-6`}
-              >
+              > */}
                 <div 
                 //  className='main-content'
                 className={ 
                 
-                  (input < 3 ? 'main-gridtwo ' : '')
-                  || (input < 4 ? 'main-grid-three ' : '')
-                  || (input < 5 ? 'main-grid-four ' : '')
-                  || (input < 6 ? 'main-grid-five ' : '')
+                  (input < 3 ? 'gridtwo ' : '')
+                  || (input < 4 ? 'grid-three ' : '')
+                  || (input < 5 ? 'grid-four ' : '')
+                  || (input < 6 ? 'grid-five ' : '')
                 }
                 >
       
@@ -117,7 +119,8 @@ const Puzzle = () => {
             </div>
           </div>
         {/* </form> */}
-      </div> 
+        {/* </div> */}
+      {/* </div>  */}
 
       {/* 
       ********************************** */}
