@@ -1,151 +1,127 @@
-import React, { useState } from 'react'
+import React, {useState,useEffect, useRef} from 'react'
 import Navbar from './Navbar'
 import "./Puzzle.css"
-import Grid from './grid';
+
 const Puzzle = () => {
 
-  const [size, setSize] = useState(0);
-  console.log("-----", size)
-  function handleInputChange(event) {
-    
-    const value = event.target.value;
-    if (/^[1-5]*$/g.test(value)) {
-      setSize(value);
+  const [input, setInput] = useState('')
+  const [message, setMessage] = useState('')
+  const [number, setnumber] = useState(null)
+  const dragItem = useRef();
+  const dragOverItem = useRef();
+  let val = (input * input)
+  const isAscending = (array) => array !== '' ? array?.map((a, i) => a > array[i + 1]).indexOf(true) === -1 : ''
+  function handler(e) {
+    e.preventDefault()
+    if (input === '') {
+      return
+    } else {
+      let random = []
+      for (let i = 0; i < val; i++) {
+        random.push(i + 1)
+      }
+      let newArr = random.sort(() => Math.random() - 0.5)
+      setnumber([...newArr])
     }
   }
+  useEffect(() => {
+    if (input <= 1 || input === '') {
+      setnumber(null)
+      setMessage('')
+    }
+  }, [input])
 
-   const [x, setX] = useState(0);
-  const [y, setY] = useState(0);
- 
-  const handleDragEnd = (event) => {
-    setX(event.clientX);
-    setY(event.clientY);
-  };
-  const handleDragStart=(event)=> {
-          // This method runs when the dragging starts
-          console.log("Started")
-      }
-      
-      const handleDrag=(event)=> {
-          // This method runs when the component is being dragged
-          console.log("Dragging...")
-      }
-      
-    //  const  handleDragEnd=(event)=> {
-    //       // This method runs when the dragging stops
-    //       console.log("Ended")
-    //   }
- 
-    // Render the grid component with the size entered by the user
-    console.log("grid size------------------:",size)
-    const grid = [];
-  
-    for (let i = 0; i < size; i++) {
-      const row = [];
-  
-      for (let j = 0; j < size; j++) {
-        row.push(Math.floor(Math.random() * 10)); // Generate a random number between 0 and 9
-      }
-      grid.push(row);
+  useEffect(() => {
+    if (isAscending(number) !== true) {
+      return
+    } else {
+      setMessage('You Have Solved the Puzzle')
+      setnumber(null)
+      setTimeout(() => {
+        alert('You Have Solved the Puzzle')
+      }, 300)
+    }
+  }, [number])
+
+  function handleDragStart(e, position) {
+    dragItem.current = position;
   }
-  
-  
+  function handleDragEnter(e, position) {
+    dragOverItem.current = position;
+  }
 
+  function handleDrop() {
+    const arrayList = [...number];
+    const dragItemContent = arrayList[dragItem.current];
+    arrayList.splice(dragItem.current, 1);
+    arrayList.splice(dragOverItem.current, 0, dragItemContent);
+    dragItem.current = null;
+    dragOverItem.current = null;
+    setnumber(arrayList);
+  }
 
-    // const generateGrid = () => {
-    //   // get input value
-    //   var number = document.getElementById("inputNumber").value;
+  return (
+    <>
+      <Navbar />
+    
+       <div className="  w-full h-screen pt-10 pb-3 z-50 justify-center items-center">
+        {/* <form className="   bg-zinc-300 w-full h-screen "> */}
+          <div className="p-3 w-full mt-8 h-7   justify-center items-center ">
+            <h3 className="Main-form-title"> Grid Generator</h3>
+            <div class="container">
+              <form onSubmit={handler} >
+                <div class="form-group  justify-center items-center">
+                  <label for="inputNumber">Enter a number:</label>
+                  <input class="form-control"
+                   type="number" min={1} value={input} onChange={(e) => {
+                    setInput('')
+                    if (e.target.value < 6) {
+                      setInput(e.target.value)
+                    }
+                  }} 
+                  />
+                   <input className="generate-button" type="submit" value="submit" />
+                </div>
+              </form>
 
-    //   // create array of numbers to populate grid
-    //   var numbers = [];
-    //   for (var i = 1; i <= number * number; i++) {
-    //     numbers.push(i);
-    //   }
-    //   // shuffle numbers array to randomize order
-    //   for (var i = numbers.length - 1; i > 0; i--) {
-    //     var j = Math.floor(Math.random() * (i + 1));
-    //     var temp = numbers[i];
-    //     numbers[i] = numbers[j];
-    //     numbers[j] = temp;
-    //   }
-    //   {/* <div class =grid-container>  */ }
-    //   // create grid HTML
-    //   var gridHTML = " <table class='table grid-item t '  > ";
-    //   for (var i = 0; i < number; i++) {
-    //     gridHTML += "<tr  class=' grid-item '>";
-    //     for (var j = 0; j < number; j++) {
-    //       gridHTML += "<td class=' grid-item  '>" + numbers[i * number + j] + "</td>";
-    //     }
-    //     gridHTML += "</tr>";
-    //   }
-    //   gridHTML += "</table>";
-
-    //   // add grid HTML to container
-    //   document.getElementById("gridContainer").innerHTML = gridHTML;
-    // }
-    return (
-      <>
-        <Navbar />
-  
-        <div className="Main-container-puzzle">
-          <form className="Main-Box-puzzle">
-            <div className="Main-form-content">
-              <h3 className="Main-form-title">Random Grid Generator</h3>
-              <div class="container">
-                <form>
-                  <div class="form-group">
-                    <label for="inputNumber">Enter a number:</label>
-                    <input class="form-control" id="inputNumber" min="1" max="5" 
-                     onChange={handleInputChange}
-                     required
-                      type="number" value={size} 
-                      // onChange={(e) => { setSize(e.target.value) }}
-                      
-                      />
-                  </div>
-                  <button type="button" class="btn btn-primary"
-                   
-                  // onClick={generateGrid}
-                  >Generate Grid</button>
-                </form>
-
-                <div
-            style={{ gridTemplateColumns: `repeat(${size}, 1fr)` }}
-            className={`gridSelected grid rounded-xl  grid-cols-${size} grid-rows-${size} shadow-4xl  w-full  justify-items-center gap-4   mx-auto p-6`}
-        >
-            <div>
-      {grid.map((row, i) => (
-        <div
-         draggable
-        onDragStart={handleDragStart}
-        onDrag={handleDrag}
-        onDragEnd={handleDragEnd}
-
-        className='grid-row' 
-        key={i}>
-          {row.map((cell, j) => (
-            <span className='grid-col'
-            draggable
-        onDragStart={handleDragStart}
-        onDrag={handleDrag}
-        onDragEnd={handleDragEnd}
-
-            key={j}>{cell}</span>
-          ))}
-        </div>
-      ))}
-    </div>
-        </div>
-                {/* <div id="gridContainer">
-                </div> */}
-              </div>
+              <div
+                // style={{ gridTemplateColumns: `repeat(${size}, 1fr)` }}
+                // className={`gridSelected grid rounded-xl  grid-cols-${size} grid-rows-${size} shadow-4xl  w-full  justify-items-center gap-4   mx-auto p-6`}
+              >
+                <div 
+                //  className='main-content'
+                className={ 
+                
+                  (input < 3 ? 'main-gridtwo ' : '')
+                  || (input < 4 ? 'main-grid-three ' : '')
+                  || (input < 5 ? 'main-grid-four ' : '')
+                  || (input < 6 ? 'main-grid-five ' : '')
+                }
+                >
+      
+                  {
+                  number?.map((item, index) => {
+                return <div draggable
+                  onDragStart={(e) => handleDragStart(e, index)}
+                  onDragEnter={(e) => handleDragEnter(e, index)}
+                  onDragEnd={handleDrop}
+                  key={index}  className='grid-block'>
+                  {
+                    item
+                  }
+                </div>
+              })}
+                </div>
+              
+</div>
             </div>
-          </form>
-        </div>
+          </div>
+        {/* </form> */}
+      </div> 
 
-        {/* 
+      {/* 
       ********************************** */}
-        {/* <div className="container">
+      {/* <div className="container">
       <h1>Random Grid Puzzle</h1>
       <div className="input-container">
         <label className="input-label">
@@ -155,10 +131,10 @@ const Puzzle = () => {
         <button className="generate-button" onClick={handleGenerateClick}>Generate</button>
       </div>
     </div> */}
-      </>
+    </>
 
 
-    )
-  }
+  )
+}
 
-  export default Puzzle
+export default Puzzle

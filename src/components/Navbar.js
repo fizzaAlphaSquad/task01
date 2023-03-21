@@ -4,7 +4,7 @@ import logo from "../images/logo-puzzle.jpg"
 import "./Homepage.css"
 import "./Navbar.css"
 const Navbar = ({size}) => {
-    console.log("navsize",size)
+    // console.log("navsize",size)
     return (
         <>
             {/* <!-- Image and text --> */}
